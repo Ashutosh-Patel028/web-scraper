@@ -1,12 +1,10 @@
+#Scraping data from https://free-proxy-list.net/# and save it to csv file
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-main_url = "https://free-proxy-list.net/#"
-
-proxy = "http://129.154.225.163:8100"
-# main_req = requests.get(main_url,proxies={'http':proxy,'https':proxy})
-r = requests.get(main_url)
+url = "https://free-proxy-list.net/#"
+r = requests.get(url)
 
 with open("data/bags.html", "w") as f:
     f.write(str(r.content))
@@ -35,20 +33,3 @@ def insertToCSV(table_header,rows):
     df.to_csv("data/proxy.csv",mode='w',header=True,index=False)
 
 insertToCSV(table_header,rows)
-
-
-
-# def fetchAndSaveToFile():
-#     r = requests.get(url)
-#     with open(fileName, 'wb') as f:
-#         f.write(r.content)
-# fetchAndSaveToFile(main_url, "data/bags.html")
-
-
-# import pandas as pd
-
-# data = {'items': [], 'price': []}
-# data['items'] = ['bag1', 'bag2', 'bag3']
-# data['price'] = [100, 200, 300]
-# df = pd.DataFrame.from_dict(data)
-# df.to_csv('data/bags.csv', index=False)
